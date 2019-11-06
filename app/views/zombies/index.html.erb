@@ -13,13 +13,13 @@
 
   <tbody>
     <% @zombies.each do |zombie| %>
-      <tr>
-        <td><%= zombie.name %></td>
-        <td><%= zombie.bio %></td>
-        <td><%= link_to 'Show', zombie %></td>
-        <td><%= link_to 'Edit', edit_zombie_path(zombie) %></td>
-        <td><%= link_to 'Destroy', zombie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= div_for zombie do %>
+        <%= link_to "Zombie #{zombie.name}", zombie %>
+          <div class="actions">
+            <td><%= link_to 'Edit', edit_zombie_path(zombie) %></td>
+            <td><%= link_to 'Destroy', zombie, method: :delete, remote: true %></td>
+          </div>
+        <% end %>
     <% end %>
   </tbody>
 </table>
