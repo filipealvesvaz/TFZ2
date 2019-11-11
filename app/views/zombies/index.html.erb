@@ -2,27 +2,14 @@
 
 <h1>Zombies</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Bio</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @zombies.each do |zombie| %>
+  <%= div_for zombie do %>
+    <%= link_to "Zombie #{zombie.name.titleize}", zombie %>
+    <%= link_to 'Edit', edit_zombie_path(zombie) %>
+    <%= link_to 'Destroy', zombie, method: :delete, remote: true %></td>
+  <% end %>
+<% end %>
 
-  <tbody>
-    <% @zombies.each do |zombie| %>
-      <%= div_for zombie do %>
-        <%= link_to "Zombie #{zombie.name}", zombie %>
-          <div class="actions">
-            <td><%= link_to 'Edit', edit_zombie_path(zombie) %></td>
-            <td><%= link_to 'Destroy', zombie, method: :delete, remote: true %></td>
-          </div>
-        <% end %>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 
